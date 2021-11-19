@@ -1,28 +1,29 @@
 #include <QCoreApplication>
-#include <QDebug>
+#include "Interface.h"
+#include <QtDebug>
 #include <iostream>
-
-class MySingleton {
+class MyClassImlp{
 public:
-   static MySingleton* getInstance() {
-        static MySingleton instance;
-        return &instance;
-    }
 
-    void test() {
-        std::cout << "Singleton test" << std::endl;
-    }
-
-    void justForTest(){
-        qDebug() << "Only for test";
+   void test() {
+        std::cout << "Test";
     }
 };
 
+MyClass::MyClass() noexcept : m_pImpl(new MyClassImlp){
 
-int main() {
-    MySingleton::getInstance()->test();
+}
 
-    MySingleton::getInstance()->justForTest();
+void MyClass::test()
+{
+   m_pImpl->test();
+}
 
-    return 0;
+
+int main(int argc, char *argv[])
+{
+    QCoreApplication a(argc, argv);
+
+    return a.exec();
+
 }
