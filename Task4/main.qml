@@ -10,23 +10,25 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
-ScrollView {
-        id: flickable
-        anchors.fill: parent
-        clip: true
+Flickable {
+       anchors.fill: parent
+       clip: true
+       flickableDirection: Flickable.VerticalFlick
+       ScrollBar.vertical: ScrollBar {}
 
     RowLayout {
         anchors.fill: parent
         spacing: 0
-        parent: flickable
         TextArea {
             id: textInput
+
             Layout.preferredWidth: parent.width / 2
             Layout.fillHeight: true
             selectByMouse: true
             text: "Enter text"
             wrapMode: TextArea.WrapAnywhere
         }
+
         TextArea {
             id: textInput1
             Layout.fillWidth: true
@@ -35,7 +37,6 @@ ScrollView {
             wrapMode: TextArea.WrapAnywhere
         }
     }
-    ScrollBar.vertical: ScrollBar {}
 }
     Button {
         id: but
@@ -46,4 +47,3 @@ ScrollView {
         onClicked: {textInput1.text = textInput.text }
     }
 }
-
