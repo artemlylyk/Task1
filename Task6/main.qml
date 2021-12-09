@@ -13,17 +13,13 @@ ListView{
    id:list
    anchors.fill: parent
    model: 4
-   delegate: Rectangle {
-       id: name
-       
-       height: 50
-
-       Button{
+   delegate: Button{
           anchors.left: parent.left
           text:"Btn"
+          highlighted: ListView.isCurrentItem
           onClicked: list.currentIndex = index
-       }
-   }
+    }
+}
 ColumnLayout{
     anchors.right: parent.right
 
@@ -31,5 +27,4 @@ ColumnLayout{
             text: "Currentindex is " + list.currentIndex
         }
     }
-  }
 }
