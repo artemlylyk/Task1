@@ -6,36 +6,42 @@ import QtQuick.Controls 2.15
 Window {
     id: name
     width: 600
-    height: 550
+    height: 800
     visible: true
     title: qsTr("Hello World")
-
-Flickable {
-       anchors.fill: parent
-       clip: true
-       flickableDirection: Flickable.VerticalFlick
-       ScrollBar.vertical: ScrollBar {}
 
     RowLayout {
         anchors.fill: parent
         spacing: 0
-        TextArea {
-            id: textInput
 
+        Flickable {
+            id: flickable
             Layout.preferredWidth: parent.width / 2
             Layout.fillHeight: true
+            contentWidth: width
+            contentHeight: textInput.implicitHeight
+
+        TextArea.flickable: TextArea {
+            id: textInput
             selectByMouse: true
             text: "Enter text"
             wrapMode: TextArea.WrapAnywhere
         }
-
-        TextArea {
-            id: textInput1
+        ScrollBar.vertical: ScrollBar { }
+    }
+        Flickable {
+            id: flickable1
             Layout.fillWidth: true
             Layout.fillHeight: true
+            contentWidth: width
+            contentHeight: textInput1.implicitHeight
+
+       TextArea.flickable: TextArea {
+            id: textInput1
             color:"#FF0000"
             wrapMode: TextArea.WrapAnywhere
         }
+        ScrollBar.vertical: ScrollBar { }
     }
 }
     Button {
